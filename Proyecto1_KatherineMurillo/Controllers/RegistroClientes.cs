@@ -14,6 +14,16 @@ namespace Proyecto1_KatherineMurillo.Controllers
             List<cls_Clientes> lstResultado = await Obj_CNX.ListarClientes();
             return View(lstResultado);
         }
+        public async Task<IActionResult> FiltrarCliente(string _sIdBuscar)
+        {
+            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
+            List<cls_Clientes> lstResultado = await Obj_CNX.ListarClientes();
+            if (!string.IsNullOrEmpty(_sIdBuscar))
+            {
+                lstResultado = lstResultado.FindAll(item => item.identificacion.ToString().Contains(_sIdBuscar, System.StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+            return View(lstResultado);
+        }
         public IActionResult AbrirCrearClientes()
         {
             return View();

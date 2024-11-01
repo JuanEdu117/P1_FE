@@ -1,27 +1,13 @@
 ﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.cls_Mantenimiento>
 
 @{
-    ViewData["Title"] = "ListadoMantenimiento";
+    ViewData["Title"] = "FiltrarMante";
 }
 
-<h1>Listado Mantenimiento</h1>
+<h1>Filtrar Mantenimiento</h1>
 
-<p>
-    <a asp-action="AbrirCrearMantenimiento" asp-controller="RegistroMantenimiento">Crear Nuevo</a>
-</p>
-
-<form asp-action="FiltrarMante" asp-controller="RegistroMantenimiento" method="get">
-    @* ASOCIO LA ACCION DEL CONTROLLLER ASP-ACTION Y LE ASIGNO EL CONTROLLER ASP-CONTROLLER *@
-    <div>
-        <label>Buscar Mantenimiento: </label>
-        <input name="_sIdBuscar" placeholder="buscar por id " id="estado" type="search" required /> @*EL NAME COINCIDE CON EL VALOR DEL STRING QUE RECIBE*@
-        <span id="estadoFeedback" style="color: red;"></span>
-        <button type="submit" class="button btn-outline-primary font-weight-bold"> <span class="spinner-border spinner-border-sm"></span>Filtrar</button>
-    </div>
-</form>
-<hr />
 <table class="table table-hover">
-    <thead class="table-success">
+    <thead class="table-info">
         <tr>
             <th>
                 ID Mantenimiento
@@ -65,7 +51,6 @@
             <th>
                 Estado Mantenimiento
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -113,11 +98,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.estadoMantenimiento)
             </td>
-            <td>
-                    @Html.ActionLink("Modificar", "AbrirModificarMantenimiento", new { _iId_Mantenimiento = item.idMantenimiento }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "AbrirEliminarMantenimiento", new { _iId_Mantenimiento = item.idMantenimiento }, new { @class = "btn btn-danger" })
-            </td>
+          
         </tr>
 }
     </tbody>
 </table>
+<div>
+    <a asp-action="ListadoMantenimiento" asp-controller="RegistroMantenimiento">Regresar al Listado</a>
+</div>

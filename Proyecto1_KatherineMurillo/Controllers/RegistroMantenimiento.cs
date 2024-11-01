@@ -14,6 +14,16 @@ namespace Proyecto1_KatherineMurillo.Controllers
             List<cls_Mantenimiento> lstResultado = await Obj_CNX.ListarMantenimiento();
             return View(lstResultado);
         }
+        public async Task<IActionResult> FiltrarMante(string _sIdBuscar)
+        {
+            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
+            List<cls_Mantenimiento> lstResultado = await Obj_CNX.ListarMantenimiento();
+            if (!string.IsNullOrEmpty(_sIdBuscar))
+            {
+                lstResultado = lstResultado.FindAll(item => item.idMantenimiento.ToString().Contains(_sIdBuscar, System.StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+            return View(lstResultado);
+        }
         public IActionResult AbrirCrearMantenimiento()
         {
             return View();

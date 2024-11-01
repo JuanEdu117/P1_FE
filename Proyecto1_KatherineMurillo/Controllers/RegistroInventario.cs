@@ -14,6 +14,16 @@ namespace Proyecto1_KatherineMurillo.Controllers
             List<cls_Inventario> lstResultado = await Obj_CNX.ListarInventario();
             return View(lstResultado);
         }
+        public async Task<IActionResult> FiltrarInventario(string _sIdBuscar)
+        {
+            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
+            List<cls_Inventario> lstResultado = await Obj_CNX.ListarInventario();
+            if (!string.IsNullOrEmpty(_sIdBuscar))
+            {
+                lstResultado = lstResultado.FindAll(item => item.idInventario.ToString().Contains(_sIdBuscar, System.StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+            return View(lstResultado);
+        }
         public IActionResult AbrirCrearInventario()
         {
             return View();

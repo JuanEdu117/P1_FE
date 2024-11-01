@@ -1,30 +1,16 @@
 ﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.cls_Clientes>
 
 @{
-    ViewData["Title"] = "ListadoClientes";
+    ViewData["Title"] = "FiltrarCliente";
 }
 
-<h1>Listado Clientes</h1>
+<h1>Filtrar Cliente</h1>
 
-<p>
-    <a asp-action="AbrirCrearClientes" asp-controller="RegistroClientes">Crear Nuevo</a>
-</p>
-
-<form asp-action="FiltrarCliente" asp-controller="RegistroClientes" method="get">
-    @* ASOCIO LA ACCION DEL CONTROLLLER ASP-ACTION Y LE ASIGNO EL CONTROLLER ASP-CONTROLLER *@
-    <div>
-        <label>Buscar Cliente: </label>
-        <input name="_sIdBuscar" placeholder="buscar por cedula cliente" id="estado" type="search" required /> @*EL NAME COINCIDE CON EL VALOR DEL STRING QUE RECIBE*@
-        <span id="estadoFeedback" style="color: red;"></span>
-        <button type="submit" class="button btn-outline-primary font-weight-bold"> <span class="spinner-border spinner-border-sm"></span>Filtrar</button>
-    </div>
-</form>
-<hr />
 <table class="table table-hover">
-    <thead class="table-success">
+    <thead class="table-info">
         <tr>
             <th>
-                Identificación
+                Cédula
             </th>
             <th>
                 Nombre Completo
@@ -47,7 +33,7 @@
             <th>
                 Mantenimiento Verano
             </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
@@ -77,11 +63,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.mantenimientoVerano)
             </td>
-            <td>
-                    @Html.ActionLink("Modificar", "AbrirModificarClientes", new { _iId_Clientes = item.identificacion }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "AbrirEliminarClientes", new { _iId_Clientes = item.identificacion }, new { @class = "btn btn-danger" })
-            </td>
+           
         </tr>
 }
     </tbody>
 </table>
+<div>
+    <a asp-action="ListadoClientes" asp-controller="RegistroClientes">Regresar al Listado</a>
+</div>
